@@ -1,0 +1,13 @@
+.env
+appsettings.json
+
+bin/
+obj/
+*.dll
+*.pdb
+*.cache
+*.nuget.dgspec.json
+*.user
+*.vs
+*.vscode
+
