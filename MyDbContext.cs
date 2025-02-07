@@ -1,19 +1,17 @@
 using Microsoft.EntityFrameworkCore;
-using dotenv;
+
 
 internal class MyDbContext : DbContext
 {
-    private readonly string _connectionString;
+    private readonly string connectionString;
     public MyDbContext()
     {
-        _connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING") ?? throw new InvalidOperationException("Database connection string not found in environment variables.");
+        connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
     }
-
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         // We tell the app to use the connectionString.
-        optionsBuilder.UseSqlServer(_connectionString);
+        optionsBuilder.UseSqlServer(connectionString);
     }
     public DbSet<Asset> Assets { get; set; }
     protected override void OnModelCreating(ModelBuilder ModelBuilder)
